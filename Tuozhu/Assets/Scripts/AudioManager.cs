@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    public AudioSource musicSource;
+    public AudioSource musicSource = null;
     public List<AudioSource> soundSources = new List<AudioSource>();
 
     private float musicVolume = 1.0f;
@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
 
     public void SetMusicVolume(float volume)
     {
-        musicSource.volume = volume;
+        musicVolume = volume;
         if (musicSource != null)
         {
             musicSource.volume = musicVolume;
