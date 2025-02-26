@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class HexagonControl : MonoBehaviour
 {
+    public GravityCalculation gravityCalculation;
     public int n;
     public int status;
+    public int tempstatus;
     // 目标旋转角度（只记录Z轴）
     private float targetZ;
     // 控制旋转平滑度
@@ -15,7 +17,8 @@ public class HexagonControl : MonoBehaviour
         n = 0;
         // 记录当前Z轴的初始值
         targetZ = transform.eulerAngles.z;
-        status = (int)(transform.eulerAngles.z - 30) / 60;
+        status = (int)(transform.eulerAngles.z + 0.01 - 30) / 60;
+        tempstatus = status;
     }
 
     void Update()
@@ -24,17 +27,20 @@ public class HexagonControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             targetZ -= 60f;
+            tempstatus= (tempstatus + 5) % 6;
         }
         // 按D键顺时针旋转60度
         if (Input.GetKeyDown(KeyCode.D))
         {
             targetZ += 60f;
+            tempstatus = (tempstatus + 1) % 6;
         }
         // 按S键n加1
         if (Input.GetKeyDown(KeyCode.S))
         {
             n++;
-            status = (((int)(targetZ + 30) / 60) + 65) % 6;
+            status = tempstatus;
+            gravityCalculation.gravityCalculation();
         }
 
         // 使用LerpAngle实现平滑旋转
