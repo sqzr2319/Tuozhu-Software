@@ -27,6 +27,15 @@ EditorBuildSettings:
     path: Assets/Scenes/AboutScene.unity
     guid: 8fcd5fd02849509498577c52e8cb87a3
   - enabled: 1
+    path: Assets/Scenes/LoseScene.unity
+    guid: dedfc1c9756c38a4089511fac5f7b90a
+  - enabled: 1
+    path: Assets/Scenes/WinningScene.unity
+    guid: ca7cf8621c6058e419e517819553ac48
+  - enabled: 1
+    path: Assets/Scenes/PauseScene.unity
+    guid: 3054881e0c1b5f541be6ec320d6a20bb
+  - enabled: 1
     path: Assets/Scenes/Level1Scene.unity
     guid: 580e3054cfa2fdc4fbbaeb4bef34f4d9
   - enabled: 1

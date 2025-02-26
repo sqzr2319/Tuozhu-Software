@@ -3,19 +3,20 @@ using UnityEngine;
 public class HexagonControl : MonoBehaviour
 {
     public GravityCalculation gravityCalculation;
+    public HexagonPattern hexagonPattern;
     public int n;
     public int status;
     public int tempstatus;
-    // Ä¿±êÐý×ª½Ç¶È£¨Ö»¼ÇÂ¼ZÖá£©
+    // Ä¿ï¿½ï¿½ï¿½ï¿½×ªï¿½Ç¶È£ï¿½Ö»ï¿½ï¿½Â¼Zï¿½á£©
     private float targetZ;
-    // ¿ØÖÆÐý×ªÆ½»¬¶È
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªÆ½ï¿½ï¿½ï¿½ï¿½
     public float rotationSpeed = 5f;
 
     void Start()
     {
-        // ³¡¾°¼ÓÔØÊ±³õÊ¼»¯n
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ê¼ï¿½ï¿½n
         n = 0;
-        // ¼ÇÂ¼µ±Ç°ZÖáµÄ³õÊ¼Öµ
+        // ï¿½ï¿½Â¼ï¿½ï¿½Ç°Zï¿½ï¿½Ä³ï¿½Ê¼Öµ
         targetZ = transform.eulerAngles.z;
         status = (int)(transform.eulerAngles.z + 0.01 - 30) / 60;
         tempstatus = status;
@@ -23,38 +24,42 @@ public class HexagonControl : MonoBehaviour
 
     void Update()
     {
-        // °´A¼üÄæÊ±ÕëÐý×ª60¶È
-        if (Input.GetKeyDown(KeyCode.A))
+        if(!hexagonPattern.isFaded)
         {
-            targetZ -= 60f;
-            tempstatus= (tempstatus + 5) % 6;
-        }
-        // °´D¼üË³Ê±ÕëÐý×ª60¶È
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            targetZ += 60f;
-            tempstatus = (tempstatus + 1) % 6;
-        }
-        // °´S¼ün¼Ó1
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            n++;
-            status = tempstatus;
-            gravityCalculation.gravityCalculation();
-        }
+            // ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½×ª60ï¿½ï¿½
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                targetZ -= 60f;
+                tempstatus= (tempstatus + 5) % 6;
+            }
+            // ï¿½ï¿½Dï¿½ï¿½Ë³Ê±ï¿½ï¿½ï¿½ï¿½×ª60ï¿½ï¿½
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                targetZ += 60f;
+                tempstatus = (tempstatus + 1) % 6;
+            }
+            // ï¿½ï¿½Sï¿½ï¿½nï¿½ï¿½1
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                n++;
+                status = tempstatus;
+                gravityCalculation.gravityCalculation();
+            }
 
-        // Ê¹ÓÃLerpAngleÊµÏÖÆ½»¬Ðý×ª
-        Vector3 currentAngles = transform.eulerAngles;
-        currentAngles.z = Mathf.LerpAngle(currentAngles.z, targetZ, Time.deltaTime * rotationSpeed);
-        transform.eulerAngles = currentAngles;
+            // Ê¹ï¿½ï¿½LerpAngleÊµï¿½ï¿½Æ½ï¿½ï¿½ï¿½ï¿½×ª
+            Vector3 currentAngles = transform.eulerAngles;
+            currentAngles.z = Mathf.LerpAngle(currentAngles.z, targetZ, Time.deltaTime * rotationSpeed);
+            transform.eulerAngles = currentAngles;
+        }
+        
     }
 
     void OnGUI()
     {
-        // Ôö´ó×ÖÌåÏÔÊ¾nµÄÖµ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾nï¿½ï¿½Öµ
         GUIStyle style = new GUIStyle(GUI.skin.label);
         style.fontSize = 36;
 
-        GUI.Label(new Rect(10, 10, 300, 40), "n = " + n, style);
+        GUI.Label(new Rect(10, 10, 300, 60), "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + n, style);
     }
 }

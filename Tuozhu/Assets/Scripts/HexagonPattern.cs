@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class HexagonPattern : MonoBehaviour
 {
@@ -14,9 +15,19 @@ public class HexagonPattern : MonoBehaviour
     public Color colorLightBlue = new Color(142f / 255f, 205f / 255f, 223f / 255f);
     public Color colorDarkBlue = new Color(19f / 255f, 102f / 255f, 132f / 255f);
 
+    // 保存原始颜色
+    private Color originalBlue;
+    private Color originalLightBlue;
+    private Color originalDarkBlue;
+
     public float Radius;
 
     private Material lineMaterial;
+
+    // 添加平滑褪色参数及状态变量
+    public float fadeDuration = 1f;
+    public bool isFaded = false;
+    private bool isTransitioning = false;
 
     void Start()
     {
@@ -26,6 +37,51 @@ public class HexagonPattern : MonoBehaviour
         lineMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
         lineMaterial.SetInt("_Cull", (int)UnityEngine.Rendering.CullMode.Off);
         lineMaterial.SetInt("_ZWrite", 0);
+
+        // 存储原始颜色
+        originalBlue = colorBlue;
+        originalLightBlue = colorLightBlue;
+        originalDarkBlue = colorDarkBlue;
+    }
+
+    void Update()
+    {
+        // 按下 X 键时开始颜色切换
+        if (Input.GetKeyDown(KeyCode.X) && !isTransitioning)
+        {
+            StartCoroutine(ToggleFade());
+        }
+    }
+
+    IEnumerator ToggleFade()
+    {
+        isTransitioning = true;
+        float t = 0f;
+
+        Color startBlue = colorBlue;
+        Color startLightBlue = colorLightBlue;
+        Color startDarkBlue = colorDarkBlue;
+        // 根据当前状态设置目标颜色
+        Color targetColor = isFaded ? Color.gray : Color.gray; // 目标均为灰色
+        Color targetBlue = isFaded ? originalBlue : Color.gray;
+        Color targetLightBlue = isFaded ? originalLightBlue : Color.gray;
+        Color targetDarkBlue = isFaded ? originalDarkBlue : Color.gray;
+
+        while (t < fadeDuration)
+        {
+            t += Time.deltaTime;
+            float ratio = t / fadeDuration;
+            colorBlue = Color.Lerp(startBlue, targetBlue, ratio);
+            colorLightBlue = Color.Lerp(startLightBlue, targetLightBlue, ratio);
+            colorDarkBlue = Color.Lerp(startDarkBlue, targetDarkBlue, ratio);
+            yield return null;
+        }
+
+        colorBlue = targetBlue;
+        colorLightBlue = targetLightBlue;
+        colorDarkBlue = targetDarkBlue;
+        isFaded = !isFaded;
+        isTransitioning = false;
     }
 
     void OnRenderObject()
@@ -273,6 +329,15 @@ public class HexagonPattern : MonoBehaviour
 
         GL.Vertex(vertices[5]);
         GL.Vertex(vertices[0]);
+
+        GL.Vertex(center);
+        GL.Vertex(vertices[0]);
+
+        GL.Vertex(center);
+        GL.Vertex(vertices[2]);
+
+        GL.Vertex(center);
+        GL.Vertex(vertices[4]);
 
         GL.End();
     }

@@ -22,11 +22,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GravityCalculation.cs",
+              "DocumentMoniker": "C:\\Users\\ms169\\Desktop\\Tuozhu-Software\\Tuozhu\\Assets\\Scripts\\GravityCalculation.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GravityCalculation.cs",
+              "ToolTip": "C:\\Users\\ms169\\Desktop\\Tuozhu-Software\\Tuozhu\\Assets\\Scripts\\GravityCalculation.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GravityCalculation.cs",
+              "ViewState": "AgIAAMwAAAAAAAAAAAAowGkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-23T07:12:44.381Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -36,7 +49,7 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\HexagonControl.cs",
               "ToolTip": "C:\\Users\\ms169\\Desktop\\Tuozhu-Software\\Tuozhu\\Assets\\Scripts\\HexagonControl.cs",
               "RelativeToolTip": "Assets\\Scripts\\HexagonControl.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAwCoAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-24T04:52:13.327Z",
               "EditorCaption": ""
@@ -49,22 +62,9 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\HexagonPattern.cs",
               "ToolTip": "C:\\Users\\ms169\\Desktop\\Tuozhu-Software\\Tuozhu\\Assets\\Scripts\\HexagonPattern.cs",
               "RelativeToolTip": "Assets\\Scripts\\HexagonPattern.cs",
-              "ViewState": "AgIAAJsAAAAAAAAAAAAswK4AAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAowK4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-24T04:46:19.651Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GravityCalculation.cs",
-              "DocumentMoniker": "C:\\Users\\ms169\\Desktop\\Tuozhu-Software\\Tuozhu\\Assets\\Scripts\\GravityCalculation.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\GravityCalculation.cs",
-              "ToolTip": "C:\\Users\\ms169\\Desktop\\Tuozhu-Software\\Tuozhu\\Assets\\Scripts\\GravityCalculation.cs",
-              "RelativeToolTip": "Assets\\Scripts\\GravityCalculation.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAgwFMAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T07:12:44.381Z",
               "EditorCaption": ""
             }
           ]
