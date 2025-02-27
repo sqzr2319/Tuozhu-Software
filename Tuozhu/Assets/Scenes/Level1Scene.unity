@@ -132,27 +132,15 @@ GameObject:
   m_Component:
   - component: {fileID: 172633449}
   - component: {fileID: 172633448}
-  - component: {fileID: 172633447}
+  - component: {fileID: 172633451}
+  - component: {fileID: 172633452}
   m_Layer: 2
-  m_Name: Destination
+  m_Name: End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &172633447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172633446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41b41164a7043d24988ab07d8bc595ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gravityCalculation: {fileID: 1978968605}
 --- !u!212 &172633448
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -220,6 +208,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &172633451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172633446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d8a1da3eae107c4b8d316fa824aefeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hexagonPattern: {fileID: 665896842}
+  objectData: {fileID: 172633452}
+  smoothTime: 0
+  lastAngle: 0
+  downfallcnt: 0
+--- !u!114 &172633452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172633446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c73a5399601287141a2fdec9c4e4d7b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialStart: 000000000000000000000000
+  tutorialEnd: 000000000000000000000000
+  tutorialDoubleGravity: 0
+  level1Start: 000000000000000000000000
+  level1End: 000000000100000002000000
+  level1DoubleGravity: 0
+  level2Start: 000000000000000000000000
+  level2End: 000000000000000000000000
+  level2DoubleGravity: 0
+  level3Start: 000000000000000000000000
+  level3End: 000000000000000000000000
+  level3DoubleGravity: 0
+  level4Start: 000000000000000000000000
+  level4End: 000000000000000000000000
+  level4DoubleGravity: 0
+  level5Start: 000000000000000000000000
+  level5End: 000000000000000000000000
+  level5DoubleGravity: 0
+  level6Start: 000000000000000000000000
+  level6End: 000000000000000000000000
+  level6DoubleGravity: 0
+  level7Start: 000000000000000000000000
+  level7End: 000000000000000000000000
+  level7DoubleGravity: 0
+  level8Start: 000000000000000000000000
+  level8End: 000000000000000000000000
+  level8DoubleGravity: 0
+  level9Start: 000000000000000000000000
+  level9End: 000000000000000000000000
+  level9DoubleGravity: 0
+  level10Start: 000000000000000000000000
+  level10End: 000000000000000000000000
+  level10DoubleGravity: 0
+  level11Start: 000000000000000000000000
+  level11End: 000000000000000000000000
+  level11DoubleGravity: 0
+  level12Start: 000000000000000000000000
+  level12End: 000000000000000000000000
+  level12DoubleGravity: 0
 --- !u!1 &665896838
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,13 +321,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c1fb95d7b82a347a3c30f6b244ea16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hexagonData: {fileID: 665896843}
   n: 4
+  status: 0
+  targetZ: 0
+  rotationSpeed: 5
+  vertices:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  center: {x: 0, y: 0, z: 0}
   colorBlue: {r: 0.12156863, g: 0.5882353, b: 0.7529412, a: 1}
   colorLightBlue: {r: 0.5568628, g: 0.8039216, b: 0.8745098, a: 1}
   colorDarkBlue: {r: 0.07450981, g: 0.4, b: 0.5176471, a: 1}
+  originalBlue: {r: 0, g: 0, b: 0, a: 0}
+  originalLightBlue: {r: 0, g: 0, b: 0, a: 0}
+  originalDarkBlue: {r: 0, g: 0, b: 0, a: 0}
   Radius: 0
+  radius: 0
+  angleOffset: 0
+  lineMaterial: {fileID: 0}
   fadeDuration: 1
   isFaded: 0
+  isTransitioning: 0
+  sceneName: 
 --- !u!114 &665896843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,15 +357,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 665896838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e920bbcd7cf0ce84e98be77e4162b29f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4164815fe7033c64f90050e1ae8e481d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityCalculation: {fileID: 1978968605}
-  hexagonPattern: {fileID: 665896842}
-  n: 0
-  status: 0
-  tempstatus: 0
-  rotationSpeed: 5
+  tutorialN: 3
+  level1N: 4
+  level2N: 4
+  level3N: 4
+  level4N: 4
+  level5N: 4
+  level6N: 4
+  level7N: 4
+  level8N: 4
+  level9N: 4
+  level10N: 4
+  level11N: 4
+  level12N: 4
 --- !u!1 &728404725
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,8 +568,9 @@ GameObject:
   - component: {fileID: 1978968604}
   - component: {fileID: 1978968603}
   - component: {fileID: 1978968605}
+  - component: {fileID: 1978968606}
   m_Layer: 2
-  m_Name: Circle
+  m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -572,12 +656,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hexagonPattern: {fileID: 665896842}
-  hexagonControl: {fileID: 665896843}
-  destinationControl: {fileID: 172633447}
-  position: 000000000000000000000000
-  destination: 000000000000000000000000
+  objectData: {fileID: 1978968606}
   smoothTime: 0.1
   lastAngle: 0
+  downfallcnt: 0
+--- !u!114 &1978968606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978968602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c73a5399601287141a2fdec9c4e4d7b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialStart: 000000000000000000000000
+  tutorialEnd: 000000000000000000000000
+  tutorialDoubleGravity: 0
+  level1Start: 000000000000000000000000
+  level1End: 000000000100000002000000
+  level1DoubleGravity: 0
+  level2Start: 000000000000000000000000
+  level2End: 000000000000000000000000
+  level2DoubleGravity: 0
+  level3Start: 000000000000000000000000
+  level3End: 000000000000000000000000
+  level3DoubleGravity: 0
+  level4Start: 000000000000000000000000
+  level4End: 000000000000000000000000
+  level4DoubleGravity: 0
+  level5Start: 000000000000000000000000
+  level5End: 000000000000000000000000
+  level5DoubleGravity: 0
+  level6Start: 000000000000000000000000
+  level6End: 000000000000000000000000
+  level6DoubleGravity: 0
+  level7Start: 000000000000000000000000
+  level7End: 000000000000000000000000
+  level7DoubleGravity: 0
+  level8Start: 000000000000000000000000
+  level8End: 000000000000000000000000
+  level8DoubleGravity: 0
+  level9Start: 000000000000000000000000
+  level9End: 000000000000000000000000
+  level9DoubleGravity: 0
+  level10Start: 000000000000000000000000
+  level10End: 000000000000000000000000
+  level10DoubleGravity: 0
+  level11Start: 000000000000000000000000
+  level11End: 000000000000000000000000
+  level11DoubleGravity: 0
+  level12Start: 000000000000000000000000
+  level12End: 000000000000000000000000
+  level12DoubleGravity: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -69,14 +69,14 @@
     <Compile Include="Assets\Scripts\SaveManager.cs" />
     <Compile Include="Assets\Scripts\LoseSceneManager.cs" />
     <Compile Include="Assets\Scripts\HexagonPattern.cs" />
-    <Compile Include="Assets\Scripts\DestinationControl.cs" />
     <Compile Include="Assets\Scripts\GravityCalculation.cs" />
+    <Compile Include="Assets\Scripts\HexagonData.cs" />
     <Compile Include="Assets\Scripts\StartSceneManager.cs" />
     <Compile Include="Assets\Scripts\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\LevelSelectManager.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
-    <Compile Include="Assets\Scripts\HexagonControl.cs" />
+    <Compile Include="Assets\Scripts\ObjectData.cs" />
     <Compile Include="Assets\Scripts\SettingsManager.cs" />
   </ItemGroup>
   <ItemGroup>
