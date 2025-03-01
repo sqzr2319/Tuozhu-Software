@@ -21,9 +21,11 @@ public class HexagonPattern : MonoBehaviour
 	public Vector3[] bigvertices = new Vector3[6];
 	public Vector3[] smallvertices = new Vector3[6];
 	public Vector3[] tempvertices = new Vector3[6];
-	public Vector3 center;
+	public Vector3 bigcenter;
+	public Vector3 smallcenter;
+    public Vector3 tempcenter;
 
-	public Color colorBlue = new Color(31f / 255f, 150f / 255f, 192f / 255f);
+    public Color colorBlue = new Color(31f / 255f, 150f / 255f, 192f / 255f);
 	public Color colorLightBlue = new Color(142f / 255f, 205f / 255f, 223f / 255f);
 	public Color colorDarkBlue = new Color(19f / 255f, 102f / 255f, 132f / 255f);
 
@@ -52,7 +54,7 @@ public class HexagonPattern : MonoBehaviour
 
 	private float blinkTimer = 0f;
 	private bool showLines = true;
-	private float blinkInterval = 0.2f;
+	private float blinkInterval = 1f;
 
 	void Start()
 	{
@@ -220,18 +222,30 @@ public class HexagonPattern : MonoBehaviour
 				}
 			}
 		}
-	}
+
+		if (isFaded)
+		{
+            if (concave)
+            {
+                drawConcaveLines();
+            }
+            if (convex)
+            {
+                drawConvexLines();
+            }
+        }
+    }
 
 	public void CalculateVertices()
 	{
-		center = transform.position;
+		bigcenter = transform.position;
 		for (int i = 0; i < 6; i++)
 		{
 			float angle = Mathf.Deg2Rad * 60f * i;
 			bigvertices[i] = new Vector3(
-				center.x + Radius * Mathf.Cos(angle + angleOffset),
-				center.y + Radius * Mathf.Sin(angle + angleOffset),
-				center.z
+				bigcenter.x + Radius * Mathf.Cos(angle + angleOffset),
+				bigcenter.y + Radius * Mathf.Sin(angle + angleOffset),
+				bigcenter.z
 			);
 		}
 	}
@@ -244,7 +258,7 @@ public class HexagonPattern : MonoBehaviour
 
 		for (int i = 0; i < 6; i++)
 		{
-			GL.Vertex(center);
+			GL.Vertex(bigcenter);
 			GL.Vertex(bigvertices[i]);
 			GL.Vertex(bigvertices[(i + 1) % 6]);
 		}
@@ -258,42 +272,42 @@ public class HexagonPattern : MonoBehaviour
 
 		GL.Begin(GL.TRIANGLES);
 		GL.Color(colorBlue);
-		GL.Vertex(center);
+		GL.Vertex(bigcenter);
 		GL.Vertex(bigvertices[5]);
 		GL.Vertex(bigvertices[0]);
 		GL.End();
 
 		GL.Begin(GL.TRIANGLES);
 		GL.Color(colorBlue);
-		GL.Vertex(center);
+		GL.Vertex(bigcenter);
 		GL.Vertex(bigvertices[0]);
 		GL.Vertex(bigvertices[1]);
 		GL.End();
 
 		GL.Begin(GL.TRIANGLES);
 		GL.Color(colorLightBlue);
-		GL.Vertex(center);
+		GL.Vertex(bigcenter);
 		GL.Vertex(bigvertices[3]);
 		GL.Vertex(bigvertices[4]);
 		GL.End();
 
 		GL.Begin(GL.TRIANGLES);
 		GL.Color(colorLightBlue);
-		GL.Vertex(center);
+		GL.Vertex(bigcenter);
 		GL.Vertex(bigvertices[4]);
 		GL.Vertex(bigvertices[5]);
 		GL.End();
 
 		GL.Begin(GL.TRIANGLES);
 		GL.Color(colorDarkBlue);
-		GL.Vertex(center);
+		GL.Vertex(bigcenter);
 		GL.Vertex(bigvertices[1]);
 		GL.Vertex(bigvertices[2]);
 		GL.End();
 
 		GL.Begin(GL.TRIANGLES);
 		GL.Color(colorDarkBlue);
-		GL.Vertex(center);
+		GL.Vertex(bigcenter);
 		GL.Vertex(bigvertices[2]);
 		GL.Vertex(bigvertices[3]);
 		GL.End();
@@ -305,42 +319,42 @@ public class HexagonPattern : MonoBehaviour
 
 		GL.Begin(GL.TRIANGLES);
 		GL.Color(colorBlue);
-		GL.Vertex(center);
+		GL.Vertex(smallcenter);
 		GL.Vertex(smallvertices[2]);
 		GL.Vertex(smallvertices[3]);
 		GL.End();
 
 		GL.Begin(GL.TRIANGLES);
 		GL.Color(colorBlue);
-		GL.Vertex(center);
+		GL.Vertex(smallcenter);
 		GL.Vertex(smallvertices[3]);
 		GL.Vertex(smallvertices[4]);
 		GL.End();
 
 		GL.Begin(GL.TRIANGLES);
 		GL.Color(colorLightBlue);
-		GL.Vertex(center);
+		GL.Vertex(smallcenter);
 		GL.Vertex(smallvertices[0]);
 		GL.Vertex(smallvertices[1]);
 		GL.End();
 
 		GL.Begin(GL.TRIANGLES);
 		GL.Color(colorLightBlue);
-		GL.Vertex(center);
+		GL.Vertex(smallcenter);
 		GL.Vertex(smallvertices[1]);
 		GL.Vertex(smallvertices[2]);
 		GL.End();
 
 		GL.Begin(GL.TRIANGLES);
 		GL.Color(colorDarkBlue);
-		GL.Vertex(center);
+		GL.Vertex(smallcenter);
 		GL.Vertex(smallvertices[5]);
 		GL.Vertex(smallvertices[0]);
 		GL.End();
 
 		GL.Begin(GL.TRIANGLES);
 		GL.Color(colorDarkBlue);
-		GL.Vertex(center);
+		GL.Vertex(smallcenter);
 		GL.Vertex(smallvertices[4]);
 		GL.Vertex(smallvertices[5]);
 		GL.End();
@@ -352,12 +366,12 @@ public class HexagonPattern : MonoBehaviour
 		GL.Begin(GL.LINES);
 		GL.Color(Color.white);
 
-		DrawLinesInTriangle(bigvertices[0], bigvertices[1], bigvertices[5], center, n - 1);
-		DrawLinesInTriangle(bigvertices[1], bigvertices[2], center, bigvertices[3], n - 1);
-		DrawLinesInTriangle(bigvertices[2], bigvertices[3], bigvertices[1], center, n - 1);
-		DrawLinesInTriangle(bigvertices[3], bigvertices[4], center, bigvertices[5], n - 1);
-		DrawLinesInTriangle(bigvertices[4], bigvertices[5], bigvertices[3], center, n - 1);
-		DrawLinesInTriangle(bigvertices[5], bigvertices[0], center, bigvertices[1], n - 1);
+		DrawLinesInTriangle(bigvertices[0], bigvertices[1], bigvertices[5], bigcenter, n - 1);
+		DrawLinesInTriangle(bigvertices[1], bigvertices[2], bigcenter, bigvertices[3], n - 1);
+		DrawLinesInTriangle(bigvertices[2], bigvertices[3], bigvertices[1], bigcenter, n - 1);
+		DrawLinesInTriangle(bigvertices[3], bigvertices[4], bigcenter, bigvertices[5], n - 1);
+		DrawLinesInTriangle(bigvertices[4], bigvertices[5], bigvertices[3], bigcenter, n - 1);
+		DrawLinesInTriangle(bigvertices[5], bigvertices[0], bigcenter, bigvertices[1], n - 1);
 
 		GL.End();
 	}
@@ -377,22 +391,39 @@ public class HexagonPattern : MonoBehaviour
 
 	public void CalculateLittleHexagons(int x,int y,int h)
 	{
-		center = transform.position;
-		center.x = center.x+radius * y * Mathf.Cos(1.0472f - angleOffset) - radius * x * Mathf.Cos(angleOffset) - radius * (h - 1) * Mathf.Sin(angleOffset - 0.5236f);
-		center.y = center.y-radius * y * Mathf.Sin(1.0472f - angleOffset) - radius * x * Mathf.Sin(angleOffset) + radius * (h - 1) * Mathf.Cos(angleOffset - 0.5236f);
+		smallcenter = transform.position;
+		smallcenter.x = smallcenter.x+radius * y * Mathf.Cos(1.0472f - angleOffset) - radius * x * Mathf.Cos(angleOffset) - radius * (h - 1) * Mathf.Sin(angleOffset - 0.5236f);
+		smallcenter.y = smallcenter.y-radius * y * Mathf.Sin(1.0472f - angleOffset) - radius * x * Mathf.Sin(angleOffset) + radius * (h - 1) * Mathf.Cos(angleOffset - 0.5236f);
 
 		for (int i = 0; i < 6; i++)
 		{
 			float angle = Mathf.Deg2Rad * 60f * i;
 			smallvertices[i] = new Vector3(
-				center.x + radius * Mathf.Cos(angle + angleOffset),
-				center.y + radius * Mathf.Sin(angle + angleOffset),
-				center.z
+				smallcenter.x + radius * Mathf.Cos(angle + angleOffset),
+				smallcenter.y + radius * Mathf.Sin(angle + angleOffset),
+				smallcenter.z
 			);
 		}
 	}
 
-	public void DrawLittleHexagons()
+    public void CalculateTempHexagons(int x, int y, int h)
+    {
+        tempcenter = transform.position;
+        tempcenter.x = tempcenter.x + radius * y * Mathf.Cos(1.0472f - angleOffset) - radius * x * Mathf.Cos(angleOffset) - radius * (h - 1) * Mathf.Sin(angleOffset - 0.5236f);
+        tempcenter.y = tempcenter.y - radius * y * Mathf.Sin(1.0472f - angleOffset) - radius * x * Mathf.Sin(angleOffset) + radius * (h - 1) * Mathf.Cos(angleOffset - 0.5236f);
+
+        for (int i = 0; i < 6; i++)
+        {
+            float angle = Mathf.Deg2Rad * 60f * i;
+            tempvertices[i] = new Vector3(
+                tempcenter.x + radius * Mathf.Cos(angle + angleOffset),
+                tempcenter.y + radius * Mathf.Sin(angle + angleOffset),
+                tempcenter.z
+            );
+        }
+    }
+
+    public void DrawLittleHexagons()
 	{
 		lineMaterial.SetPass(0);
 		GL.Begin(GL.TRIANGLES);
@@ -400,7 +431,7 @@ public class HexagonPattern : MonoBehaviour
 
 		for (int i = 0; i < 6; i++)
 		{
-			GL.Vertex(center);
+			GL.Vertex(smallcenter);
 			GL.Vertex(smallvertices[i]);
 			GL.Vertex(smallvertices[(i + 1) % 6]);
 		}
@@ -432,13 +463,13 @@ public class HexagonPattern : MonoBehaviour
 		GL.Vertex(smallvertices[5]);
 		GL.Vertex(smallvertices[0]);
 
-		GL.Vertex(center);
+		GL.Vertex(smallcenter);
 		GL.Vertex(smallvertices[0]);
 
-		GL.Vertex(center);
+		GL.Vertex(smallcenter);
 		GL.Vertex(smallvertices[2]);
 
-		GL.Vertex(center);
+		GL.Vertex(smallcenter);
 		GL.Vertex(smallvertices[4]);
 
 		GL.End();
@@ -570,13 +601,13 @@ public class HexagonPattern : MonoBehaviour
 				switch (nearest[0])
 				{
 					case 0:
-						CalculateLittleHexagons(nearest[1], nearest[2], h1+1);
+						CalculateTempHexagons(nearest[1], nearest[2], h1+1);
 						break;
 					case 1:
-						CalculateLittleHexagons(h1, nearest[1], nearest[2]+1);
+						CalculateTempHexagons(h1, nearest[1], nearest[2]+1);
 						break;
 					case 2:
-						CalculateLittleHexagons(nearest[2], h1, nearest[1]+1);
+						CalculateTempHexagons(nearest[2], h1, nearest[1]+1);
 						break;
 				}
 				drawConcaveLines();
@@ -606,13 +637,13 @@ public class HexagonPattern : MonoBehaviour
 				switch (nearest[0])
 				{
 					case 0:
-						CalculateLittleHexagons(nearest[1], nearest[2], h1);
+						CalculateTempHexagons(nearest[1], nearest[2], h1);
 						break;
 					case 1:
-						CalculateLittleHexagons(h1, nearest[1], nearest[2]);
+						CalculateTempHexagons(h1-1, nearest[1], nearest[2]+1);
 						break;
 					case 2:
-						CalculateLittleHexagons(nearest[2], h1, nearest[1]);
+						CalculateTempHexagons(nearest[2], h1-1, nearest[1]+1);
 						break;
 				}
 				drawConvexLines();
@@ -727,93 +758,84 @@ public class HexagonPattern : MonoBehaviour
 		return Vector3.Distance(target, mousePos);
 	}
 
-	public void drawConcaveLines()
-	{
-		blinkTimer += Time.deltaTime;
-		if (blinkTimer >= blinkInterval)
-		{
-			showLines = !showLines;
-			blinkTimer = 0f;
-		}
+    public void drawConcaveLines()
+    {
+        // 使用 sin 函数平滑计算当前 alpha 值，blinkInterval 控制闪烁周期
+        float alpha = 0.5f + 0.5f * Mathf.Sin(Time.time * (Mathf.PI * 2f / blinkInterval));
+        Color blinkColor = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, alpha);
 
-		if (!showLines) return;
+        lineMaterial.SetPass(0);
+        GL.Begin(GL.LINES);
+        GL.Color(blinkColor);
 
-		lineMaterial.SetPass(0);
-		GL.Begin(GL.LINES);
-		GL.Color(Color.yellow);
+        GL.Vertex(tempvertices[0]);
+        GL.Vertex(tempvertices[1]);
 
-		GL.Vertex(smallvertices[0]);
-		GL.Vertex(smallvertices[1]);
+        GL.Vertex(tempvertices[1]);
+        GL.Vertex(tempvertices[2]);
 
-		GL.Vertex(smallvertices[1]);
-		GL.Vertex(smallvertices[2]);
+        GL.Vertex(tempvertices[2]);
+        GL.Vertex(tempvertices[3]);
 
-		GL.Vertex(smallvertices[2]);
-		GL.Vertex(smallvertices[3]);
+        GL.Vertex(tempvertices[3]);
+        GL.Vertex(tempvertices[4]);
 
-		GL.Vertex(smallvertices[3]);
-		GL.Vertex(smallvertices[4]);
+        GL.Vertex(tempvertices[4]);
+        GL.Vertex(tempvertices[5]);
 
-		GL.Vertex(smallvertices[4]);
-		GL.Vertex(smallvertices[5]);
+        GL.Vertex(tempvertices[5]);
+        GL.Vertex(tempvertices[0]);
 
-		GL.Vertex(smallvertices[5]);
-		GL.Vertex(smallvertices[0]);
+        GL.Vertex(tempcenter);
+        GL.Vertex(tempvertices[1]);
 
-		GL.Vertex(center);
-		GL.Vertex(smallvertices[0]);
+        GL.Vertex(tempcenter);
+        GL.Vertex(tempvertices[3]);
 
-		GL.Vertex(center);
-		GL.Vertex(smallvertices[2]);
+        GL.Vertex(tempcenter);
+        GL.Vertex(tempvertices[5]);
 
-		GL.Vertex(center);
-		GL.Vertex(smallvertices[4]);
+        GL.End();
+    }
 
-		GL.End();
-	}
+    public void drawConvexLines()
+    {
+        // 同样使用平滑的 alpha 值
+        float alpha = 0.5f + 0.5f * Mathf.Sin(Time.time * (Mathf.PI * 2f / blinkInterval));
+        Color blinkColor = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, alpha);
 
-	public void drawConvexLines()
-	{
-		blinkTimer += Time.deltaTime;
-		if (blinkTimer >= blinkInterval)
-		{
-			showLines = !showLines;
-			blinkTimer = 0f;
-		}
+        lineMaterial.SetPass(0);
+        GL.Begin(GL.LINES);
+        GL.Color(blinkColor);
 
-		if (!showLines) return;
+        GL.Vertex(tempvertices[0]);
+        GL.Vertex(tempvertices[1]);
 
-		lineMaterial.SetPass(0);
-		GL.Begin(GL.LINES);
-		GL.Color(Color.white);
+        GL.Vertex(tempvertices[1]);
+        GL.Vertex(tempvertices[2]);
 
-		GL.Vertex(smallvertices[0]);
-		GL.Vertex(smallvertices[1]);
+        GL.Vertex(tempvertices[2]);
+        GL.Vertex(tempvertices[3]);
 
-		GL.Vertex(smallvertices[1]);
-		GL.Vertex(smallvertices[2]);
+        GL.Vertex(tempvertices[3]);
+        GL.Vertex(tempvertices[4]);
 
-		GL.Vertex(smallvertices[2]);
-		GL.Vertex(smallvertices[3]);
+        GL.Vertex(tempvertices[4]);
+        GL.Vertex(tempvertices[5]);
 
-		GL.Vertex(smallvertices[3]);
-		GL.Vertex(smallvertices[4]);
+        GL.Vertex(tempvertices[5]);
+        GL.Vertex(tempvertices[0]);
 
-		GL.Vertex(smallvertices[4]);
-		GL.Vertex(smallvertices[5]);
+        GL.Vertex(tempcenter);
+        GL.Vertex(tempvertices[0]);
 
-		GL.Vertex(smallvertices[5]);
-		GL.Vertex(smallvertices[0]);
+        GL.Vertex(tempcenter);
+        GL.Vertex(tempvertices[2]);
 
-		GL.Vertex(center);
-		GL.Vertex(smallvertices[1]);
+        GL.Vertex(tempcenter);
+        GL.Vertex(tempvertices[4]);
 
-		GL.Vertex(center);
-		GL.Vertex(smallvertices[3]);
+        GL.End();
+    }
 
-		GL.Vertex(center);
-		GL.Vertex(smallvertices[5]);
-
-		GL.End();
-	}
 }

@@ -180,7 +180,9 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
-  center: {x: 0, y: 0, z: 0}
+  bigcenter: {x: 0, y: 0, z: 0}
+  smallcenter: {x: 0, y: 0, z: 0}
+  tempcenter: {x: 0, y: 0, z: 0}
   colorBlue: {r: 0.12156863, g: 0.5882353, b: 0.7529412, a: 1}
   colorLightBlue: {r: 0.5568628, g: 0.8039216, b: 0.8745098, a: 1}
   colorDarkBlue: {r: 0.07450981, g: 0.4, b: 0.5176471, a: 1}
@@ -270,13 +272,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialStart: 000000000000000000000000
-  tutorialEnd: 000000000000000000000000
+  tutorialEnd: 000000000100000001000000
   tutorialDoubleGravity: 0
   level1Start: 000000000000000000000000
   level1End: 000000000100000002000000
   level1DoubleGravity: 0
   level2Start: 000000000000000000000000
-  level2End: 000000000000000000000000
+  level2End: 000000000300000002000000
   level2DoubleGravity: 0
   level3Start: 000000000000000000000000
   level3End: 000000000000000000000000
@@ -629,13 +631,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialStart: 000000000000000000000000
-  tutorialEnd: 000000000000000000000000
+  tutorialEnd: 000000000100000001000000
   tutorialDoubleGravity: 0
   level1Start: 000000000000000000000000
   level1End: 000000000100000002000000
   level1DoubleGravity: 0
   level2Start: 000000000000000000000000
-  level2End: 000000000000000000000000
+  level2End: 000000000300000002000000
   level2DoubleGravity: 0
   level3Start: 000000000000000000000000
   level3End: 000000000000000000000000

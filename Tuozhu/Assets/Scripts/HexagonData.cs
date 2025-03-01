@@ -3,13 +3,13 @@ using System.Collections;
 public class HexagonData : MonoBehaviour
 {
 	public int tutorialN = 3;
-	public int[,] tutorialHeight = new int[,] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
+	public int[,] tutorialHeight = new int[,] { { 2, 2, 1 }, { 2, 1, 0 }, { 1, 1, 0 } };
 
 	public int level1N = 4;
 	public int[,] level1Height = new int[,] { { 3, 3, 3, 2 }, { 3, 3, 2, 1 }, { 2, 2, 1, 0 }, { 2, 1, 1, 0 } };
 
 	public int level2N = 4;
-	public int[,] level2Height = new int[,] { { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
+	public int[,] level2Height = new int[,] { { 3, 3, 2, 2 }, { 3, 3, 2, 1 }, { 2, 2, 1, 0 }, { 1, 1, 0, 0 } };
 
 	public int level3N = 4;
 	public int[,] level3Height = new int[,] { { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };

@@ -4,7 +4,7 @@ using System.Collections;
 public class ObjectData : MonoBehaviour
 {
 	public int[] tutorialStart = new int[] { 0, 0, 0 };
-	public int[] tutorialEnd = new int[] { 0, 0, 0 };
+	public int[] tutorialEnd = new int[] { 0, 1, 1 };
 	public bool tutorialDoubleGravity = false;
 
 	public int[] level1Start = new int[] { 0, 0, 0 };
@@ -12,7 +12,7 @@ public class ObjectData : MonoBehaviour
 	public bool level1DoubleGravity = false;
 
 	public int[] level2Start = new int[] { 0, 0, 0 };
-	public int[] level2End = new int[] { 0, 0, 0 };
+	public int[] level2End = new int[] { 0, 3, 2 };
 	public bool level2DoubleGravity = false;
 
 	public int[] level3Start = new int[] { 0, 0, 0 };
