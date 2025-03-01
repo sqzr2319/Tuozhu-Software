@@ -13,12 +13,12 @@ public class LevelSelectManager : MonoBehaviour
     public GameObject lockedPrompt;
     public float scrollSpeed = 10f;
 
-    private int currentLevel;
+    public int currentLevel;
 
     private void Start()
     {
         GameData gameData = SaveManager.GetGameData();
-        currentLevel = gameData.currentLevel;
+        //currentLevel = gameData.currentLevel;
 
         backButton.onClick.AddListener(OnBackButtonClicked);
 

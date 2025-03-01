@@ -222,7 +222,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hexagonPattern: {fileID: 665896842}
   objectData: {fileID: 172633452}
-  smoothTime: 0
+  start: 
+  end: 
+  smoothTime: 0.1
   lastAngle: 0
   downfallcnt: 0
 --- !u!114 &172633452
@@ -322,11 +324,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hexagonData: {fileID: 665896843}
+  gravityCalculation: {fileID: 1978968605}
   n: 4
+  changecnt: 0
   status: 0
   targetZ: 0
   rotationSpeed: 5
-  vertices:
+  bigvertices:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  smallvertices:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  tempvertices:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
@@ -348,6 +366,9 @@ MonoBehaviour:
   isFaded: 0
   isTransitioning: 0
   sceneName: 
+  nearest: 
+  convex: 0
+  concave: 0
 --- !u!114 &665896843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,6 +678,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hexagonPattern: {fileID: 665896842}
   objectData: {fileID: 1978968606}
+  start: 
+  end: 
   smoothTime: 0.1
   lastAngle: 0
   downfallcnt: 0

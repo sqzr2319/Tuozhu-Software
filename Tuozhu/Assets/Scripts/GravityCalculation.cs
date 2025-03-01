@@ -17,8 +17,8 @@ public class GravityCalculation : MonoBehaviour
 	private string sceneName;
 	private string objectName;
 
-	private int[] start;
-	private int[] end;
+	public int[] start;
+	public int[] end;
 	private bool doubleGravity;
 
 	private float radius;
@@ -36,7 +36,6 @@ public class GravityCalculation : MonoBehaviour
 	void Start()
 	{
 		n = hexagonPattern.n;
-		polygon = new int[3, n, n];
 		sceneName = SceneManager.GetActiveScene().name;
 		objectName = gameObject.name;
 
@@ -111,15 +110,16 @@ public class GravityCalculation : MonoBehaviour
 	}
 	void Update()
 	{
-		polygonCalculation();
+		height = hexagonPattern.height;
+		polygon = hexagonPattern.polygon;
 
-		switch (objectName)
+        switch (objectName)
 		{
 			case "Start":
-				positionCalculation(ref start, true, ref startcenter);
+				positionCalculation(ref start, ref startcenter);
 				break;
 			case "End":
-				positionCalculation(ref end, false, ref endcenter);
+				positionCalculation(ref end, ref endcenter);
 				break;
 		}
 
@@ -129,7 +129,7 @@ public class GravityCalculation : MonoBehaviour
 		}
 		if (Input.GetKeyDown(KeyCode.S))
 		{
-			if(objectName == "Start")
+			if(objectName == "Start"&&!hexagonPattern.isFaded)
 			{
 				downfallcnt++;
 				status = hexagonPattern.status;
@@ -143,54 +143,13 @@ public class GravityCalculation : MonoBehaviour
 		}
 	}
 
-	private void polygonCalculation()
-	{
-		height = hexagonPattern.height;
-		for (int i = 0; i < n; i++)
-		{
-			for (int j = 0; j < n; j++)
-			{
-				polygon[0, i, j] = height[i, j];
-			}
-		}
-		for (int i = 0; i < n; i++)
-		{
-			for (int j = 0; j < n; j++)
-			{
-				int temp = -1;
-				for (int k = 0; k < n; k++)
-				{
-					if (polygon[0, j, k] >= i + 1)
-					{
-						temp++;
-					}
-				}
-				polygon[2, i, j] = temp + 1;
-			}
-		}
-		for (int i = 0; i < n; i++)
-		{
-			for (int j = 0; j < n; j++)
-			{
-				int temp = -1;
-				for (int k = 0; k < n; k++)
-				{
-					if (polygon[0, k, i] >= j + 1)
-					{
-						temp++;
-					}
-				}
-				polygon[1, i, j] = temp + 1;
-			}
-		}
-	}
+	
 
-	public void positionCalculation(ref int[] index,bool gravity,ref Vector3 target)
+	public void positionCalculation(ref int[] index,ref Vector3 target)
 	{
-
 		radius = hexagonPattern.radius;
-		angleOffset = Mathf.Deg2Rad * (hexagonPattern.transform.eulerAngles.z);
-		int h = polygon[index[0], index[1], index[2]];
+		angleOffset = hexagonPattern.angleOffset;
+        int h = polygon[index[0], index[1], index[2]];
 
 		switch (index[0])
 		{
@@ -209,7 +168,7 @@ public class GravityCalculation : MonoBehaviour
 		}
 
 		target.z = -2;
-		if (gravity && lastAngle - angleOffset < 0.001f && lastAngle - angleOffset > -0.001f)
+		if (lastAngle - angleOffset < 0.001f && lastAngle - angleOffset > -0.001f)
 		{
 			transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, smoothTime);
 		}
@@ -411,13 +370,7 @@ public class GravityCalculation : MonoBehaviour
 				}
 				break;
 		}
-		positionCalculation(ref index,true, ref startcenter);
+		positionCalculation(ref index, ref startcenter);
 	}
 
-	public void OnGUI()
-	{
-		GUIStyle style = new GUIStyle(GUI.skin.label);
-		style.fontSize = 36;
-		GUI.Label(new Rect(10, 10, 300, 60), "下落次数：" + downfallcnt, style);
-	}
 }
