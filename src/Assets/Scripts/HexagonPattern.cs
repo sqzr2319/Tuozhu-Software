@@ -44,6 +44,7 @@ public class HexagonPattern : MonoBehaviour
 	public float fadeDuration = 1f;
 	public bool isFaded = false;
 	public bool isTransitioning = false;
+	public bool isPointInPolygon = false;
 
 	public string sceneName;
 
@@ -226,7 +227,7 @@ public class HexagonPattern : MonoBehaviour
 			}
 		}
 
-		if (isFaded)
+		if (isFaded&&isPointInPolygon)
 		{
             if (concave)
             {
@@ -533,8 +534,9 @@ public class HexagonPattern : MonoBehaviour
 	{
 		nearest = new int[3];
 		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		isPointInPolygon=IsPointInPolygon(bigvertices, mousePos);
 
-		if (IsPointInPolygon(bigvertices, mousePos))
+		if (isPointInPolygon)
 		{
 			CalculateNearest();
 			concave = false;
